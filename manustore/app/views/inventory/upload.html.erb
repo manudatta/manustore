@@ -1,5 +1,5 @@
-<div class = "well">
+<h1> Upload inventory CSV file </h1>
 <%= form_tag({controller: :inventory,action: :upload}, multipart: true) do %>
 	<%= file_field_tag 'inventory' %>
-	<%= submit_tag 'Submit' %>
-<% end %></div>
+	<%= submit_tag 'Trigger Import' %>
+<% end %>

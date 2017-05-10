@@ -5,9 +5,12 @@ class ProductsController < ApplicationController
   # GET /products.json
   # GET /products?category=::
   def index
+    @limit = 5
     @products = Product.where(nil) # creates an anonymous scope
-    @products = @products.category(params[:category]) if params[:category].present?
+    @offset = params[:offset] if params[:offset].present?
+    @all_products = @products.category(params[:category]).order(:name) if params[:category].present?
     @category = Category.find(params[:category]) if params[:category].present?
+    @products = @all_products.offset(@offset).limit(@limit)
   end
 
   # GET /products/1

@@ -15,12 +15,17 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
+	      <td><a href="products/<%= product.product_id%>"> <%= product.name %></a></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
+<% if @all_products.size > @limit.to_i %>
+<% (@all_products.size/@limit.to_f).ceil.times do |n| %>
+	<% if @offset.to_i == n*@limit %>
+		<%= n+1 %>
+	<% else %>
+		<%= link_to (n + 1).to_s, products_path(category: @category.id,offset: n*@limit) %>
+	<% end %>
+<% end %>
+<% end %>
