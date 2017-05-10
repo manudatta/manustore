@@ -3,8 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
+  # GET /products?category=::
   def index
-    @products = Product.all
+    @products = Product.where(nil) # creates an anonymous scope
+    @products = @products.category(params[:category]) if params[:category].present?
+    @category = Category.find(params[:category]) if params[:category].present?
   end
 
   # GET /products/1

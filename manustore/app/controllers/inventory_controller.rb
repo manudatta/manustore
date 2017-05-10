@@ -12,7 +12,7 @@ class InventoryController < ApplicationController
 			cat = Category.where(:name => category_name).first_or_create
 			#create product if doesnt exist
 			#byebug
-			prod = Product.where(:product_id => product_id,:category_id => cat.id, :price => product_price).first_or_create
+			prod = Product.where(:product_id => product_id,:category_id => cat.id, :price => product_price, :name => product_name).first_or_create
 		}
 		redirect_to '/categories/'
 	  end
